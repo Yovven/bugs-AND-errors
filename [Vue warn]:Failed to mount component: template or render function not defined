@@ -1,0 +1,5 @@
+[Vue warn]:Failed to mount component: template or render function not defined
+
+vue router 里有一个 模式叫做 命名视图
+本来一个页面里面只能有一个路由视图 对应 一个组件，现在可以多个路由视图 对应 多个组件。
+当对应多个组件时，应该把component改为components
