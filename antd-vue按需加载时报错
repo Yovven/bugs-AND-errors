@@ -1,0 +1,17 @@
+
+
+1.首先，antd的样式层是用less写的，需要安装less，less-loader。
+安装babel-plugin-import插件，再babel.config配置一下样式文件的按需引入。
+
+2.
+报错：
+./node_modules/antd/lib/button/style/index.less (./node_modules/css-loader??ref--6-oneOf-7-1!./node_modules/postcss-loader/src??postcss!./node_modules/less-loader/dist/cjs.js!./node_modules/antd/lib/button/style/index.less)
+// https://github.com/ant-design/ant-motion/issues/44
+.bezierEasingMixin();...
+Inline JavaScript is not enabled. Is it set in your options
+
+错误是在less中的mixin部分编译中出现的。
+错误提醒Inline JavaScript is not enabled. Is it set in your options?。
+网上查一查，结论是antd-mobile包中的inputitem的less样式其中使用了带参mixin。(todo:mixin学习一下)使用了mixin在less-loader中需要配置javascriptEnabled: true。
+于是v-cli3+的我在vue.config.js中配置了这个属性，但是依旧报错。
+对比了之前的旧项目，发现less版本有点不同，新项目时3.0，改为原来的2.7.2就可以了。
